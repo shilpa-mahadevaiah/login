@@ -1,0 +1,17 @@
+version: '2' # specify docker-compose version
+# Define the services/containers to be run
+services:
+  backend: #name of the second service
+    build: . # specify the directory of the Dockerfile
+    ports:
+      - "5000:5000"  #specify ports forewarding
+    container_name: loginnew
+    restart: always
+    links:
+      - database # link this service to the database service
+    depends_on:
+      - database
+  database: # name of the third service
+    image: mongo
+    ports:
+     - "27017:27017" # specify port forewarding
