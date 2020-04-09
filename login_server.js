@@ -7,7 +7,10 @@ const dbName='nodedb';
 var app=express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use(express.static('public'));
+//app.use(express.static('public'));
+app.get('/',(req,res)=>{
+    res.sendFile(__dirname+'/index.html');
+})
 app.post('/register',function(req,res){
     mongoClient.connect(url,function(err,client) {
         if(err){
